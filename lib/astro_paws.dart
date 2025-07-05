@@ -94,4 +94,9 @@ class AstroPawsGame extends FlameGame
     initializeGame();
     resumeEngine();
   }
+
+  @override
+  Color backgroundColor() {
+    return const Color(0xFF3B2298);
+  }
 }
