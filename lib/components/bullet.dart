@@ -5,7 +5,7 @@ import '/astro_paws.dart';
 class Bullet extends SpriteAnimationComponent with HasGameReference<AstroPawsGame>{
 
   Bullet({super.position}) : super(
-    size: Vector2(25, 50),
+    size: Vector2(50, 50),
     anchor: Anchor.center,
   );
 
@@ -15,15 +15,15 @@ class Bullet extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
     await super.onLoad();
 
     animation = await game.loadSpriteAnimation(
-      'bullet.png',
+      'hair_ball.png',
       SpriteAnimationData.sequenced(
         amount: 4,
-        stepTime: 1,
-        textureSize: Vector2(20, 20),
+        stepTime: 0.2,
+        textureSize: Vector2.all(32),
       ),
     );
 
-    add(RectangleHitbox(collisionType: CollisionType.passive));
+    add(CircleHitbox(collisionType: CollisionType.passive));
   }
 
   @override
