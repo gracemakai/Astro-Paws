@@ -20,7 +20,7 @@ class Player extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
     SpriteAnimationData.sequenced(amount: 4, stepTime: .2, textureSize: Vector2(64, 64)));
     position = game.size / 2;
 
-    _bulletSpawn  = SpawnComponent(period: .2,
+    _bulletSpawn  = SpawnComponent(period: .25,
     selfPositioning: true,
     factory: (index) {
       return Bullet(position: position + Vector2(0, -height / 2));

@@ -40,7 +40,8 @@ class Enemy extends SpriteComponent
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
 
-    if (other is Bullet) {
+    // If the enemy collides with a bullet and is at least 10 pixels below the top of the screen
+    if (other is Bullet && position.y > 10) {
       other.removeFromParent();
       removeFromParent();
       game.add(Explosion(position: position));
