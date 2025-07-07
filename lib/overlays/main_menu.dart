@@ -36,8 +36,8 @@ class MainMenu extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               SizedBox(
-                width: 200,
-                height: 75,
+                width: 300,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
                     game.overlays.remove('MainMenu');
@@ -47,9 +47,9 @@ class MainMenu extends StatelessWidget {
                     backgroundColor: whiteTextColor,
                   ),
                   child: const Text(
-                    'Play',
+                    'Engage Cat Thrusters',
                     style: TextStyle(
-                      fontSize: 40.0,
+                      fontSize: 25.0,
                       color: Colors.black,
                     ),
                   ),

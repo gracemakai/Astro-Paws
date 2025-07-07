@@ -18,7 +18,7 @@ class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
     );
 
     _scoreTextComponent = TextComponent(
-      text: 'Current score: ${game.currentScore}',
+      text: 'Meow Points: ${game.currentScore}',
       position: Vector2(10, 10),
       textRenderer: textRenderer,
     );
@@ -38,7 +38,7 @@ class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
 
   @override
   void update(double dt) {
-    _scoreTextComponent.text = 'Current score: ${game.currentScore}';
+    _scoreTextComponent.text = 'Meow Points: ${game.currentScore}';
     super.update(dt);
   }
 }

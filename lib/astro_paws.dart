@@ -24,7 +24,7 @@ class AstroPawsGame extends FlameGame
 
     final parallax = await loadParallaxComponent(
       [
-        ParallaxImageData('star_0.png'),
+        ParallaxImageData('clouds_background.png'),
         ParallaxImageData('star_1.png'),
         ParallaxImageData('star_2.png'),
       ],
