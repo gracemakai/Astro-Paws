@@ -29,7 +29,7 @@ class Enemy extends SpriteComponent
   void update(double dt) {
     super.update(dt);
 
-    position.y += dt * 250;
+    position.y += dt * 180;
 
     if (position.y > game.size.y) {
       removeFromParent();
