@@ -37,20 +37,15 @@ class Enemy extends SpriteComponent
   }
 
   @override
-  void onCollisionEnd(PositionComponent other) {
-    super.onCollisionEnd(other);
-
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     // If the enemy collides with a bullet and is at least 10 pixels below the top of the screen
     if (other is Bullet && position.y > 10) {
-      other.removeFromParent();
       removeFromParent();
       game.add(Explosion(position: position));
+      other.removeFromParent();
       game.currentScore += 1;
     }
-  }
 
-  @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Player) {
       game.gameOver();
     }

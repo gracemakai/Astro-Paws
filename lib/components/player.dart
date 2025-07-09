@@ -8,7 +8,7 @@ class Player extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
   late final SpawnComponent _bulletSpawn;
 
   Player() : super(
-    size: Vector2(100, 150),
+    size: Vector2(70, 120),
     anchor: Anchor.center,
   );
 

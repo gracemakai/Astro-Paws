@@ -23,7 +23,7 @@ class Bullet extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
       ),
     );
 
-    add(CircleHitbox(collisionType: CollisionType.passive));
+    add(RectangleHitbox(collisionType: CollisionType.passive));
   }
 
   @override
