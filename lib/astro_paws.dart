@@ -1,3 +1,4 @@
+import 'package:astro_paws/components/fuel.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/experimental.dart';
@@ -75,6 +76,30 @@ class AstroPawsGame extends FlameGame
             enemyLife: 5,
             enemySpritePath: 'lizard.png',
             enemySpeed: EnemyType.one);
+        },
+        area: Rectangle.fromLTWH(30, 0,
+            size.x - 30, -30)
+    ));
+
+    add(SpawnComponent(
+        period: 3,
+        factory: (index) {
+          return Fuel(
+            fuelSize: 32,
+            fuelSpritePath: 'paw.png',
+            fueltype: FuelType.paw);
+        },
+        area: Rectangle.fromLTWH(30, 0,
+            size.x - 30, -30)
+    ));
+
+    add(SpawnComponent(
+        period: 3,
+        factory: (index) {
+          return Fuel(
+            fuelSize: 64,
+            fuelSpritePath: 'kibble.png',
+            fueltype: FuelType.kibble);
         },
         area: Rectangle.fromLTWH(30, 0,
             size.x - 30, -30)
