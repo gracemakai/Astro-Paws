@@ -5,7 +5,7 @@ import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
 import '/components/bullet.dart';
-import '/components/enemy.dart';
+import 'components/enemy/enemy_base.dart';
 import '/components/player.dart';
 import '/hud.dart';
 
@@ -40,13 +40,45 @@ class AstroPawsGame extends FlameGame
 
     add(player);
 
+    //Spawn different enemies at different intervals
+
     add(SpawnComponent(
         period: 1,
         factory: (index) {
-          return Enemy();
+          return EnemyBase(
+            enemySize: 64,
+            enemyLife: 1,
+            enemySpritePath: 'enemy.png',
+            enemySpeed: EnemyType.three,);
         },
-        area: Rectangle.fromLTWH(Enemy.enemySize / 2, 0,
-            size.x - Enemy.enemySize, -Enemy.enemySize)));
+        area: Rectangle.fromLTWH(30, 0,
+            size.x - 30, -30),
+    ));
+
+    add(SpawnComponent(
+        period: 3,
+        factory: (index) {
+          return EnemyBase(
+            enemySize: 80,
+            enemyLife: 3,
+            enemySpritePath: 'cucumber.png',
+            enemySpeed: EnemyType.two);
+        },
+        area: Rectangle.fromLTWH(30, 0,
+            size.x - 30, -30)));
+
+    add(SpawnComponent(
+        period: 5,
+        factory: (index) {
+          return EnemyBase(
+            enemySize: 100,
+            enemyLife: 5,
+            enemySpritePath: 'lizard.png',
+            enemySpeed: EnemyType.one);
+        },
+        area: Rectangle.fromLTWH(30, 0,
+            size.x - 30, -30)
+    ));
 
     add(Hud());
   }
@@ -81,7 +113,7 @@ class AstroPawsGame extends FlameGame
     currentScore = 0;
     overlays.remove('GameOver');
     player.removeFromParent();
-    children.whereType<Enemy>().forEach((enemy) => enemy.removeFromParent());
+    children.whereType<EnemyBase>().forEach((enemy) => enemy.removeFromParent());
     children.whereType<Bullet>().forEach((bullet) => bullet.removeFromParent());
     children.whereType<Hud>().forEach((hud) => hud.removeFromParent());
     children
