@@ -13,8 +13,7 @@ import '/hud.dart';
 import 'components/explosion.dart';
 import 'high_score_manager.dart';
 
-class AstroPawsGame extends FlameGame
-    with PanDetector, HasCollisionDetection {
+class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
   late Player player;
   int currentScore = 0;
   bool hasPawShield = false;
@@ -47,69 +46,68 @@ class AstroPawsGame extends FlameGame
 
     //Spawn different enemies at different intervals
 
+    addEnemies();
+
+    addPowerUps();
+
+    add(Hud());
+  }
+
+  void addPowerUps() {
     add(SpawnComponent(
-        period: 1,
+        period: 3,
         factory: (index) {
-          return EnemyBase(
-            enemySize: 64,
-            enemyLife: 1,
-            enemySpritePath: 'enemy.png',
-            enemySpeed: EnemyType.three,);
+          return Fuel(
+              fuelSize: 32, fuelSpritePath: 'paw.png', fueltype: FuelType.paw);
         },
-        area: Rectangle.fromLTWH(30, 0,
-            size.x - 30, -30),
+        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
+
+    add(SpawnComponent(
+        period: 3,
+        factory: (index) {
+          return Fuel(
+              fuelSize: 64,
+              fuelSpritePath: 'kibble.png',
+              fueltype: FuelType.kibble);
+        },
+        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
+  }
+
+  void addEnemies() {
+    add(SpawnComponent(
+      period: 1,
+      factory: (index) {
+        return EnemyBase(
+          enemySize: 64,
+          enemyLife: 1,
+          enemySpritePath: 'enemy.png',
+          enemySpeed: EnemyType.three,
+        );
+      },
+      area: Rectangle.fromLTWH(30, 0, size.x - 30, -30),
     ));
 
     add(SpawnComponent(
         period: 3,
         factory: (index) {
           return EnemyBase(
-            enemySize: 80,
-            enemyLife: 3,
-            enemySpritePath: 'cucumber.png',
-            enemySpeed: EnemyType.two);
+              enemySize: 80,
+              enemyLife: 3,
+              enemySpritePath: 'cucumber.png',
+              enemySpeed: EnemyType.two);
         },
-        area: Rectangle.fromLTWH(30, 0,
-            size.x - 30, -30)));
+        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
 
     add(SpawnComponent(
         period: 5,
         factory: (index) {
           return EnemyBase(
-            enemySize: 100,
-            enemyLife: 5,
-            enemySpritePath: 'lizard.png',
-            enemySpeed: EnemyType.one);
+              enemySize: 100,
+              enemyLife: 5,
+              enemySpritePath: 'lizard.png',
+              enemySpeed: EnemyType.one);
         },
-        area: Rectangle.fromLTWH(30, 0,
-            size.x - 30, -30)
-    ));
-
-    add(SpawnComponent(
-        period: 3,
-        factory: (index) {
-          return Fuel(
-            fuelSize: 32,
-            fuelSpritePath: 'paw.png',
-            fueltype: FuelType.paw);
-        },
-        area: Rectangle.fromLTWH(30, 0,
-            size.x - 30, -30)
-    ));
-
-    add(SpawnComponent(
-        period: 3,
-        factory: (index) {
-          return Fuel(
-            fuelSize: 64,
-            fuelSpritePath: 'kibble.png',
-            fueltype: FuelType.kibble);
-        },
-        area: Rectangle.fromLTWH(30, 0,
-            size.x - 30, -30)
-    ));
-
-    add(Hud());
+        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
   }
 
   @override
@@ -141,10 +139,12 @@ class AstroPawsGame extends FlameGame
   void resetGame() {
     currentScore = 0;
     hasPawShield = false;
-    hasKibble  = false;
+    hasKibble = false;
     overlays.remove('GameOver');
     player.removeFromParent();
-    children.whereType<EnemyBase>().forEach((enemy) => enemy.removeFromParent());
+    children
+        .whereType<EnemyBase>()
+        .forEach((enemy) => enemy.removeFromParent());
     children.whereType<Bullet>().forEach((bullet) => bullet.removeFromParent());
     children.whereType<Hud>().forEach((hud) => hud.removeFromParent());
     children
