@@ -51,7 +51,8 @@ class Fuel extends SpriteComponent
     // If the player collides with the fuel and is at least 10 pixels below the top of the screen
     if (other is Player && position.y > 10) {
       if (fueltype == FuelType.paw) {
-        game.currentScore += 5;
+        game.hasPawShield = true;
+        game.pawShieldTime = DateTime.now();
       } else if (fueltype == FuelType.kibble) {
         game.currentScore += 10;
       }

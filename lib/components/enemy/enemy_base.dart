@@ -44,7 +44,7 @@ class EnemyBase extends SpriteComponent
   void update(double dt) {
     super.update(dt);
 
-    if(enemySpeed == EnemyType.one) {
+    if (enemySpeed == EnemyType.one) {
       position.y += dt * 60;
     } else if (enemySpeed == EnemyType.two) {
       position.y += dt * 120;
@@ -63,7 +63,7 @@ class EnemyBase extends SpriteComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     // If the enemy collides with a bullet and is at least 10 pixels below the top of the screen
     if (other is Bullet && position.y > 10) {
-      if(enemyLife > 1) {
+      if (enemyLife > 1) {
         enemyLife -= 1;
         other.removeFromParent();
         return;
@@ -74,7 +74,7 @@ class EnemyBase extends SpriteComponent
       game.currentScore += enemyLife;
     }
 
-    if (other is Player) {
+    if (other is Player && game.hasPawShield == false) {
       game.gameOver();
     }
     super.onCollision(intersectionPoints, other);
