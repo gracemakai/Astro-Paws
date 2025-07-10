@@ -9,6 +9,8 @@ class Bullet extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
     anchor: Anchor.center,
   );
 
+  static DateTime _lastExtraBulletTime = DateTime.now().subtract(const Duration(days: 1));
+
   @override
   Future<void> onLoad() async {
 
@@ -30,7 +32,20 @@ class Bullet extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
   void update(double dt) {
     super.update(dt);
 
-    position.y += dt * -400;
+    double speed = 400;
+
+    //If the player has kibble and the time is not more than 20 seconds ago, make the bullet move faster and produce more bullets
+    if (game.hasKibble && game.kibbleTime.isAfter(DateTime.now().subtract(const Duration(seconds: 20)))) {
+      speed = 200;
+      if (_lastExtraBulletTime.isAfter(DateTime.now().subtract(const Duration(milliseconds: 1)))) {
+        game.add(Bullet(position: position));
+        _lastExtraBulletTime = DateTime.now();
+      }
+    }else{
+      // If the player does not have kibble or the time is more than 20 seconds ago, remove the kibble status
+      game.hasKibble = false;
+    }
+    position.y += dt * -speed;
 
     if(position.y < -height) {
       removeFromParent();

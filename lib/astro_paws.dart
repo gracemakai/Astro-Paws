@@ -19,6 +19,8 @@ class AstroPawsGame extends FlameGame
   int currentScore = 0;
   bool hasPawShield = false;
   DateTime pawShieldTime = DateTime.now();
+  bool hasKibble = false;
+  DateTime kibbleTime = DateTime.now();
 
   @override
   Future<void> onLoad() async {
@@ -139,6 +141,7 @@ class AstroPawsGame extends FlameGame
   void resetGame() {
     currentScore = 0;
     hasPawShield = false;
+    hasKibble  = false;
     overlays.remove('GameOver');
     player.removeFromParent();
     children.whereType<EnemyBase>().forEach((enemy) => enemy.removeFromParent());

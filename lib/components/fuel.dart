@@ -54,7 +54,8 @@ class Fuel extends SpriteComponent
         game.hasPawShield = true;
         game.pawShieldTime = DateTime.now();
       } else if (fueltype == FuelType.kibble) {
-        game.currentScore += 10;
+        game.hasKibble = true;
+        game.kibbleTime = DateTime.now();
       }
       removeFromParent();
       // game.add(Explosion(position: position));
