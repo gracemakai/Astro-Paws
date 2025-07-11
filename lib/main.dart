@@ -1,3 +1,4 @@
+import 'package:astro_paws/overlays/pause_menu.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import '/overlays/main_menu.dart';
@@ -11,6 +12,7 @@ void main() {
     overlayBuilderMap: {
       'MainMenu': (_, game) => MainMenu(game: game),
       'GameOver': (_, game) => GameOver(game: game),
+      'Pause': (_, game) => PauseMenu(game: game),
     },
     initialActiveOverlays: const ['MainMenu'],
   ));

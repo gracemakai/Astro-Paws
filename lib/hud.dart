@@ -1,3 +1,4 @@
+import 'package:astro_paws/components/pause_button.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import '/astro_paws.dart';
@@ -31,6 +32,12 @@ class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
 
     var topScore = await HighScoreManager.getHighScore();
 
+    var pauseGameComponent = PauseButton(
+      sprite: await game.loadSprite('pause_button.png'),
+      position: Vector2(game.size.x - 70, 50),
+      size: Vector2(64, 64),
+    );
+
     addAll([
       _scoreTextComponent,
       TextComponent(
@@ -39,6 +46,7 @@ class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
         textRenderer: textRenderer,
       ),
       _hasPawShieldTextComponent,
+      pauseGameComponent,
     ]);
 
     return super.onLoad();
