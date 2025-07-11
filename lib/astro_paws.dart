@@ -1,4 +1,5 @@
 import 'package:astro_paws/components/fuel.dart';
+import 'package:astro_paws/components/pause_button.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/experimental.dart';
@@ -153,6 +154,15 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
     children
         .whereType<SpawnComponent>()
         .forEach((spawn) => spawn.removeFromParent());
+    children
+        .whereType<Fuel>()
+        .forEach((item) => item.removeFromParent());
+    children
+        .whereType<PauseButton>()
+        .forEach((item) => item.removeFromParent());
+    children
+        .whereType<Player>()
+        .forEach((item) => item.removeFromParent());
 
     initializeGame();
     resumeEngine();

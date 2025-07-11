@@ -6,6 +6,8 @@ import '/astro_paws.dart';
 class Player extends SpriteAnimationComponent with HasGameReference<AstroPawsGame>, CollisionCallbacks{
 
   late final SpawnComponent _bulletSpawn;
+  SpriteComponent? _shieldComponent;
+  late Sprite _shieldSprite;
 
   Player() : super(
     size: Vector2(70, 120),
@@ -28,6 +30,8 @@ class Player extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
     add(RectangleHitbox());
 
     game.add(_bulletSpawn);
+
+    _shieldSprite = await game.loadSprite('shield.png');
   }
 
   void moveTo(Vector2 delta) {
@@ -46,16 +50,28 @@ class Player extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
   void update(double dt) {
     super.update(dt);
 
-    if (position.x < width / 2) {
-      position.x = width / 2;
-    } else if (position.x > game.size.x - width / 2) {
-      position.x = game.size.x - width / 2;
+    position.clamp(
+      Vector2(width / 2, height / 2),
+      game.size - Vector2(width / 2, height / 2),
+    );
+
+    if( game.hasPawShield && _shieldComponent == null) {
+      _shieldComponent = SpriteComponent(
+        sprite: _shieldSprite,
+        size: Vector2(130, 130),
+        anchor: Anchor.center,
+      );
+      add(_shieldComponent!);
+    } else if (!game.hasPawShield && _shieldComponent != null) {
+      _shieldComponent!.removeFromParent();
+      _shieldComponent = null;
     }
 
-    if (position.y < height / 2) {
-      position.y = height / 2;
-    } else if (position.y > game.size.y - height / 2) {
-      position.y = game.size.y - height / 2;
+    if (_shieldComponent != null) {
+      _shieldComponent!.position = Vector2.zero() + Vector2(
+        size.x / 2,
+        size.y / 2,
+      );
     }
   }
 }
