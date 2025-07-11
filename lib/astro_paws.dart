@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import '/components/bullet.dart';
 import 'components/enemy/enemy_base.dart';
 import '/components/player.dart';
-import '/hud.dart';
+import 'hud/main_hud.dart';
 
 import 'components/explosion.dart';
 import 'high_score_manager.dart';
@@ -51,7 +51,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
 
     addPowerUps();
 
-    add(Hud());
+    add(MainHud());
   }
 
   void addPowerUps() {
@@ -147,7 +147,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
         .whereType<EnemyBase>()
         .forEach((enemy) => enemy.removeFromParent());
     children.whereType<Bullet>().forEach((bullet) => bullet.removeFromParent());
-    children.whereType<Hud>().forEach((hud) => hud.removeFromParent());
+    children.whereType<MainHud>().forEach((hud) => hud.removeFromParent());
     children
         .whereType<Explosion>()
         .forEach((explosion) => explosion.removeFromParent());

@@ -3,11 +3,13 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import '/astro_paws.dart';
 
-import 'high_score_manager.dart';
+import '../high_score_manager.dart';
+import 'progress_bar.dart';
 
-class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
+class MainHud extends PositionComponent with HasGameReference<AstroPawsGame> {
   late TextComponent _scoreTextComponent;
   late TextComponent _hasPawShieldTextComponent;
+  late ProgressBar _kibbleProgressBar;
 
   @override
   Future<void> onLoad() async {
@@ -29,15 +31,13 @@ class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
       position: Vector2(10, 70),
       textRenderer: textRenderer,
     );
-
-    var topScore = await HighScoreManager.getHighScore();
-
-    var pauseGameComponent = PauseButton(
-      sprite: await game.loadSprite('pause_button.png'),
-      position: Vector2(game.size.x - 70, 50),
-      size: Vector2(64, 64),
+    _kibbleProgressBar = ProgressBar(
+      label: 'Kibble Power',
+      position: Vector2(10, 100),
+      size: Vector2(200, 16),
     );
 
+    var topScore = await HighScoreManager.getHighScore();
     addAll([
       _scoreTextComponent,
       TextComponent(
@@ -46,7 +46,12 @@ class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
         textRenderer: textRenderer,
       ),
       _hasPawShieldTextComponent,
-      pauseGameComponent,
+      PauseButton(
+        sprite: await game.loadSprite('pause_button.png'),
+        position: Vector2(game.size.x - 70, 50),
+        size: Vector2(64, 64),
+      ),
+      _kibbleProgressBar,
     ]);
 
     return super.onLoad();
@@ -68,6 +73,18 @@ class Hud extends PositionComponent with HasGameReference<AstroPawsGame> {
       add(_hasPawShieldTextComponent);
     }
     _hasPawShieldTextComponent.text = 'Has paw shield: ${game.hasPawShield}';
+
+    // Update kibble progress bar
+    const kibbleDuration = 20.0; // seconds
+    double elapsed = DateTime.now().difference(game.kibbleTime).inMilliseconds / 1000.0;
+    if (game.hasKibble && elapsed < kibbleDuration) {
+      _kibbleProgressBar.progress = 1.0 - (elapsed / kibbleDuration);
+      if (_kibbleProgressBar.parent == null) add(_kibbleProgressBar);
+    } else {
+      _kibbleProgressBar.progress = 0.0;
+      if (_kibbleProgressBar.parent != null) _kibbleProgressBar.removeFromParent();
+      game.hasKibble = false;
+    }
 
     super.update(dt);
   }
