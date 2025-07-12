@@ -33,19 +33,23 @@ class MainHud extends PositionComponent with HasGameReference<AstroPawsGame> {
     );
     _kibbleProgressBar = ProgressBar(
       label: 'Kibble Power',
-      position: Vector2(10, 100),
+      position: Vector2(10, 90),
       size: Vector2(200, 16),
     );
 
     var topScore = await HighScoreManager.getHighScore();
     addAll([
+      RectangleComponent(
+        position: Vector2(0, 0),
+        size: Vector2(250, 130),
+        paint: Paint()..color = Colors.black.withOpacity(0.3),
+      ),
       _scoreTextComponent,
       TextComponent(
         text: 'Top score: $topScore',
         position: Vector2(10, 40),
         textRenderer: textRenderer,
       ),
-      _hasPawShieldTextComponent,
       PauseButton(
         sprite: await game.loadSprite('pause_button.png'),
         position: Vector2(game.size.x - 70, 50),
