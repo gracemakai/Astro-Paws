@@ -89,7 +89,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
     ));
 
     add(SpawnComponent(
-        period: 3,
+        period: 34,
         factory: (index) {
           return EnemyBase(
               enemySize: 80,
@@ -97,18 +97,18 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
               enemySpritePath: 'cucumber.png',
               enemySpeed: EnemyType.two);
         },
-        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
+        area: Rectangle.fromLTWH(80, 0, size.x - 80, -80)));
 
     add(SpawnComponent(
-        period: 5,
+        period: 89,
         factory: (index) {
           return EnemyBase(
-              enemySize: 100,
+              enemySize: 120,
               enemyLife: 5,
               enemySpritePath: 'lizard.png',
               enemySpeed: EnemyType.one);
         },
-        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
+        area: Rectangle.fromLTWH(120, 0, size.x - 120, -30)));
   }
 
   @override
