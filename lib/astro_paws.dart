@@ -25,7 +25,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    debugMode = true;
+    // debugMode = true;
 
     final parallax = await loadParallaxComponent(
       [
@@ -56,22 +56,27 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
 
   void addPowerUps() {
     add(SpawnComponent(
-        period: 90,
+        period: 73,
         factory: (index) {
           return Fuel(
               fuelSize: 32, fuelSpritePath: 'paw.png', fuelType: FuelType.paw);
         },
-        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
+        area: Rectangle.fromLTWH(
+          size.x * 0.1,
+          0,
+          size.x * 0.8,
+          -30,
+        )));
 
     add(SpawnComponent(
-        period: 60,
+        period: 41,
         factory: (index) {
           return Fuel(
               fuelSize: 50,
               fuelSpritePath: 'kibble.png',
               fuelType: FuelType.kibble);
         },
-        area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
+        area: Rectangle.fromLTWH(size.x * 0.1, 0, size.x * 0.8, -30)));
   }
 
   void addEnemies() {
@@ -85,11 +90,16 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
           enemySpeed: EnemyType.three,
         );
       },
-      area: Rectangle.fromLTWH(64, 0, size.x - 64, -30),
+      area: Rectangle.fromLTWH(
+        size.x * 0.1,
+        0,
+        size.x * 0.8,
+        -64,
+      ),
     ));
 
     add(SpawnComponent(
-        period: 34,
+        period: 19,
         factory: (index) {
           return EnemyBase(
               enemySize: 80,
@@ -97,10 +107,15 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
               enemySpritePath: 'cucumber.png',
               enemySpeed: EnemyType.two);
         },
-        area: Rectangle.fromLTWH(80, 0, size.x - 80, -80)));
+        area: Rectangle.fromLTWH(
+          size.x * 0.1,
+          0,
+          size.x * 0.8,
+          -64,
+        )));
 
     add(SpawnComponent(
-        period: 89,
+        period: 41,
         factory: (index) {
           return EnemyBase(
               enemySize: 120,
@@ -108,7 +123,12 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
               enemySpritePath: 'lizard.png',
               enemySpeed: EnemyType.one);
         },
-        area: Rectangle.fromLTWH(120, 0, size.x - 120, -30)));
+        area: Rectangle.fromLTWH(
+          size.x * 0.1,
+          0,
+          size.x * 0.8,
+          -64,
+        )));
   }
 
   @override
