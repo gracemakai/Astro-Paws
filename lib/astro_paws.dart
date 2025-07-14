@@ -1,5 +1,5 @@
 import 'package:astro_paws/components/fuel.dart';
-import 'package:astro_paws/components/pause_button.dart';
+import 'package:astro_paws/hud/pause_button.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/experimental.dart';
