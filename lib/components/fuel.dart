@@ -14,9 +14,9 @@ class Fuel extends SpriteComponent
 
   var fuelSize = 64.0;
   var fuelSpritePath = '';
-  var fueltype = FuelType.paw;
+  var fuelType = FuelType.paw;
 
-  Fuel({super.position, required this.fuelSize, required this.fuelSpritePath, required this.fueltype})
+  Fuel({super.position, required this.fuelSize, required this.fuelSpritePath, required this.fuelType})
       : super(
           size: Vector2.all(fuelSize),
           anchor: Anchor.center,
@@ -35,9 +35,9 @@ class Fuel extends SpriteComponent
   void update(double dt) {
     super.update(dt);
 
-    if(fueltype == FuelType.paw) {
+    if(fuelType == FuelType.paw) {
       position.y += dt * 60;
-    } else if (fueltype == FuelType.kibble) {
+    } else if (fuelType == FuelType.kibble) {
       position.y += dt * 120;
     }
 
@@ -50,10 +50,10 @@ class Fuel extends SpriteComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     // If the player collides with the fuel and is at least 10 pixels below the top of the screen
     if (other is Player && position.y > 10) {
-      if (fueltype == FuelType.paw) {
+      if (fuelType == FuelType.paw) {
         game.hasPawShield = true;
         game.pawShieldTime = DateTime.now();
-      } else if (fueltype == FuelType.kibble) {
+      } else if (fuelType == FuelType.kibble) {
         game.hasKibble = true;
         game.kibbleTime = DateTime.now();
       }

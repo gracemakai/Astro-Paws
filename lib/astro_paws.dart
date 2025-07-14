@@ -56,20 +56,20 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
 
   void addPowerUps() {
     add(SpawnComponent(
-        period: 3,
+        period: 90,
         factory: (index) {
           return Fuel(
-              fuelSize: 32, fuelSpritePath: 'paw.png', fueltype: FuelType.paw);
+              fuelSize: 32, fuelSpritePath: 'paw.png', fuelType: FuelType.paw);
         },
         area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
 
     add(SpawnComponent(
-        period: 3,
+        period: 60,
         factory: (index) {
           return Fuel(
-              fuelSize: 64,
+              fuelSize: 50,
               fuelSpritePath: 'kibble.png',
-              fueltype: FuelType.kibble);
+              fuelType: FuelType.kibble);
         },
         area: Rectangle.fromLTWH(30, 0, size.x - 30, -30)));
   }
@@ -154,15 +154,11 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
     children
         .whereType<SpawnComponent>()
         .forEach((spawn) => spawn.removeFromParent());
-    children
-        .whereType<Fuel>()
-        .forEach((item) => item.removeFromParent());
+    children.whereType<Fuel>().forEach((item) => item.removeFromParent());
     children
         .whereType<PauseButton>()
         .forEach((item) => item.removeFromParent());
-    children
-        .whereType<Player>()
-        .forEach((item) => item.removeFromParent());
+    children.whereType<Player>().forEach((item) => item.removeFromParent());
 
     initializeGame();
     resumeEngine();
