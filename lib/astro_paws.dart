@@ -166,6 +166,6 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
 
   @override
   Color backgroundColor() {
-    return const Color(0xFF3B2298);
+    return const Color(0xFF17112F);
   }
 }
