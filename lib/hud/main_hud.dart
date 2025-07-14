@@ -46,8 +46,8 @@ class MainHud extends PositionComponent with HasGameReference<AstroPawsGame> {
       ),
       PauseButton(
         sprite: await game.loadSprite('pause_button.png'),
-        position: Vector2(game.size.x - 70, 50),
-        size: Vector2(64, 64),
+        position: Vector2(game.size.x * 0.95, game.size.x * 0.05),
+        size: Vector2(50, 50),
       ),
       _kibbleProgressBar,
     ]);
