@@ -36,7 +36,7 @@ class ProgressBar extends PositionComponent {
   void render(Canvas canvas) {
     super.render(canvas);
     final paintBg = Paint()..color = Colors.grey.withOpacity(0.5);
-    final paintFg = Paint()..color = Colors.orangeAccent;
+    final paintFg = Paint()..color = Colors.brown;
     // Draw background
     canvas.drawRect(size.toRect(), paintBg);
     // Draw foreground (progress)

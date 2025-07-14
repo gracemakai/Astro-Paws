@@ -8,7 +8,6 @@ import 'progress_bar.dart';
 
 class MainHud extends PositionComponent with HasGameReference<AstroPawsGame> {
   late TextComponent _scoreTextComponent;
-  late TextComponent _hasPawShieldTextComponent;
   late ProgressBar _kibbleProgressBar;
 
   @override
@@ -26,11 +25,6 @@ class MainHud extends PositionComponent with HasGameReference<AstroPawsGame> {
       textRenderer: textRenderer,
     );
 
-    _hasPawShieldTextComponent = TextComponent(
-      text: 'Has paw shield: ${game.hasPawShield}',
-      position: Vector2(10, 70),
-      textRenderer: textRenderer,
-    );
     _kibbleProgressBar = ProgressBar(
       label: 'Kibble Power',
       position: Vector2(10, 90),
@@ -70,16 +64,12 @@ class MainHud extends PositionComponent with HasGameReference<AstroPawsGame> {
         game.pawShieldTime
             .isAfter(DateTime.now().subtract(const Duration(seconds: 10)));
 
-    if (!showPawShield && _hasPawShieldTextComponent.parent != null) {
-      _hasPawShieldTextComponent.removeFromParent();
-      game.hasPawShield = false; // Reset paw shield status
-    } else if (showPawShield && _hasPawShieldTextComponent.parent == null) {
-      add(_hasPawShieldTextComponent);
+    if (!showPawShield) {
+      game.hasPawShield = false;
     }
-    _hasPawShieldTextComponent.text = 'Has paw shield: ${game.hasPawShield}';
 
     // Update kibble progress bar
-    const kibbleDuration = 20.0; // seconds
+    const kibbleDuration = 10.0; // seconds
     double elapsed = DateTime.now().difference(game.kibbleTime).inMilliseconds / 1000.0;
     if (game.hasKibble && elapsed < kibbleDuration) {
       _kibbleProgressBar.progress = 1.0 - (elapsed / kibbleDuration);

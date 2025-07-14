@@ -69,7 +69,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
         )));
 
     add(SpawnComponent(
-        period: 41,
+        period: 39,
         factory: (index) {
           return Fuel(
               fuelSize: 50,
