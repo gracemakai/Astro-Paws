@@ -72,6 +72,10 @@ class Player extends SpriteAnimationComponent with HasGameReference<AstroPawsGam
         size.x / 2,
         size.y / 2,
       );
+
+      final double elapsedTime = DateTime.now().difference(game.pawShieldTime).inSeconds.toDouble();
+      final double opacity = 1 - (elapsedTime / 10).clamp(0, 1);
+      _shieldComponent!.opacity = opacity;
     }
   }
 }

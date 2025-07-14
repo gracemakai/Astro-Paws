@@ -65,7 +65,7 @@ class MainHud extends PositionComponent with HasGameReference<AstroPawsGame> {
   void update(double dt) {
     _scoreTextComponent.text = 'Meow Points: ${game.currentScore}';
 
-    // Show "Has paw shield" text only if hasPawShield is true and less than 5 minutes have passed
+    // Show "Has paw shield" text only if hasPawShield is true and less than 10 seconds have passed
     final bool showPawShield = game.hasPawShield &&
         game.pawShieldTime
             .isAfter(DateTime.now().subtract(const Duration(seconds: 10)));
