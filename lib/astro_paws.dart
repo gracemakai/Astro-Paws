@@ -1,4 +1,5 @@
 import 'package:astro_paws/components/fuel.dart';
+import 'package:astro_paws/components/gradient_background.dart';
 import 'package:astro_paws/hud/pause_button.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -27,15 +28,23 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
     await super.onLoad();
     // debugMode = true;
 
+    add(GradientBackground(colors: [
+      const Color(0xFF0A0717),
+      const Color(0xFF17112F),
+      const Color(0xFF1E163D),
+      const Color(0xFF291D54),
+      const Color(0xFF261860)
+    ]));
     final parallax = await loadParallaxComponent(
       [
-        ParallaxImageData('clouds_background.png'),
-        ParallaxImageData('star_1.png'),
-        ParallaxImageData('star_2.png'),
+        ParallaxImageData('stars.png'),
+        ParallaxImageData('stars_2.png'),
       ],
-      baseVelocity: Vector2(0, -3),
+      baseVelocity: Vector2(0, -1),
       repeat: ImageRepeat.repeat,
-      velocityMultiplierDelta: Vector2(0, 5),
+      fill: LayerFill.none,
+      size: size,
+      velocityMultiplierDelta: Vector2(0, 3),
     );
     add(parallax);
   }
@@ -184,8 +193,4 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
     resumeEngine();
   }
 
-  @override
-  Color backgroundColor() {
-    return const Color(0xFF17112F);
-  }
 }
