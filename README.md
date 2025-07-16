@@ -8,6 +8,8 @@ Astro Paws is a chaotic and cute space shooter built with [Flutter](https://flut
 > ⚠️ Currently under development! Expect bugs, weirdness, and experimental cat physics.
 
 ---
+👉 **[Play Now](https://astropaws.netlify.app/)**  
+
 
 ## 🚀 Gameplay
 
@@ -59,6 +61,9 @@ https://github.com/user-attachments/assets/eeefad70-524c-4f49-9331-8fde7a5ccffe
 - **Pan / Drag**: Move the cat ship and start shooting hairballs
 - **Avoid**: All veggies and reptiles
 - **Collect**: Kibble for rapid fire & Shields to stay safe
+
+👉 **[Click here to play Astro Paws](https://astropaws.netlify.app/)**
+
 
 ### Run the game locally:
 
