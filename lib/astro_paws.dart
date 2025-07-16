@@ -90,7 +90,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
 
   void addEnemies() {
     add(SpawnComponent(
-      period: 0.7,
+      period: 0.3,
       factory: (index) {
         return EnemyBase(
           enemySize: 64,
@@ -108,7 +108,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
     ));
 
     add(SpawnComponent(
-        period: 19,
+        period: 9,
         factory: (index) {
           return EnemyBase(
               enemySize: 80,
@@ -124,7 +124,7 @@ class AstroPawsGame extends FlameGame with PanDetector, HasCollisionDetection {
         )));
 
     add(SpawnComponent(
-        period: 41,
+        period: 17,
         factory: (index) {
           return EnemyBase(
               enemySize: 120,
