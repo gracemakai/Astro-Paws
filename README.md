@@ -1,4 +1,4 @@
-🐾 Astro Paws
+# 🐾 Astro Paws
 
 _A cat. In space. Fighting lemons, cucumbers, and lizards. With hairballs._  
 Because why not?
