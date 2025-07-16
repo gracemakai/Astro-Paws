@@ -1,4 +1,4 @@
-# 🐾 Astro Paws
+🐾 Astro Paws
 
 _A cat. In space. Fighting lemons, cucumbers, and lizards. With hairballs._  
 Because why not?
@@ -31,8 +31,16 @@ You control a pixelated space cat flying through endless waves of **lemons**, **
 ---
 
 ## 📸 Screenshots
+<img width="400" height="400" alt="Start playing" src="https://github.com/user-attachments/assets/eee5d2b0-5cd1-4dac-8912-21ea371944cb" />
+<img width="400" height="400" alt="In play" src="https://github.com/user-attachments/assets/bd10b821-3ec6-4178-8381-452713218b1d" />
+<img width="400" height="400" alt="Paused" src="https://github.com/user-attachments/assets/94687cf7-0af0-49b7-b964-43ed34402735" />
+<img width="400" height="400" alt="Game over" src="https://github.com/user-attachments/assets/78072731-4b49-4e37-8fa9-4341bcf53b8e" />
 
-> _(Coming soon — we're still making it pretty!)_
+---
+
+## 🎥 Gameplay Video
+
+https://github.com/user-attachments/assets/eeefad70-524c-4f49-9331-8fde7a5ccffe
 
 ---
 
